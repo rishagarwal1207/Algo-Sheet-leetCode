@@ -1,0 +1,39 @@
+import java.util.*;
+class Main {
+  int V;
+  LinkedList<Integer> list[];
+  Main(int v){
+  V=v;//Defining the no. of vertices
+  list=new LinkedList[v];//declaring list
+  for(int i=0;i<v;++i){
+      list[i]=new LinkedList();//har node ke liye link list
+  }
+  }
+  void addEdge( int u, int v){
+    list[u].add(v);//input edges
+  }
+  void DfsTraverse(int src, boolean[] visited){
+    visited[src]=true;System.out.println(src);
+    Iterator<Integer> i=list[src].listIterator();
+    while(i.hasNext()){
+      int n =i.next();
+      
+        if(!visited[n])
+        DfsTraverse(n,visited);
+    }
+  }
+  void Dfs( int src){
+    boolean[] visited=new boolean[V];//all are not visited so default=false;
+    DfsTraverse(src,visited);
+  }
+  
+  public static void main(String[] args) {
+    Main obj=new Main(5);
+    obj.addEdge(0,1);
+    obj.addEdge(0,2);
+    obj.addEdge(0,3);
+    obj.addEdge(2,4);
+    obj.Dfs(0);
+  }
+
+}
